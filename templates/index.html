@@ -95,6 +95,22 @@
 </div>
 
 
+  
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Sidebar overlay (mobile) -->
+<div id="overlay" onclick="toggleSidebar()"
+  style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:99;"></div>
+
+<script>
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const open = sidebar.classList.toggle('open');
+  overlay.style.display = open ? 'block' : 'none';
+}
+
+
 
 
 
