@@ -3,3 +3,15 @@
 {% block page_title %}Appointments{% endblock %}
 
 {% block content %}
+
+<div class="card">
+  <div class="card-header">
+    <h2>📅 Appointment Records</h2>
+    <button class="btn btn-primary" onclick="openModal()">+ Book Appointment</button>
+  </div>
+  <div class="card-body">
+    <div class="toolbainder">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search by patient, doctor, reason…" oninput="loadAppointments()" />
+      </div>
