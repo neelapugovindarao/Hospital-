@@ -55,6 +55,20 @@ function statusBadge(status) {
   const map = { 'Scheduled': 'info', 'Completed': 'success', 'Cancelled': 'danger' };
   return `<span class="badge badge-${map[status] || 'secondary'}">${status}</span>`;
 }
+  
+async function loadAppointments() {
+  const search = document.getElementById('searchInput').value;
+  const status = document.getElementById('statusFilter').value;
+  const params = new URLSearchParams({ search, status });
+  try {
+    const appts = await apiFetch(`/api/appointments?${params}`);
+    const tbody = document.getElementById('appointmentsBody');
+    if (!appts.length) {
+      tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">📅</div><p>No appointments found</p></div></td></tr>`;
+      return;
+    }
+    tbody.innerHTML = appts.map(a => `
+
 
 
 
