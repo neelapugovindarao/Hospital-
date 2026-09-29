@@ -69,6 +69,29 @@ async function loadAppointments() {
     }
     tbody.innerHTML = appts.map(a => `
 
+          <tr>
+        <td style="color:var(--text-muted);font-size:12px;">#${a.id}</td>
+        <td><strong>${a.patient_name}</strong></td>
+        <td>${a.doctor_name}</td>
+        <td><span class="badge badge-info">${a.specialization}</span></td>
+        <td>${a.appointment_date}</td>
+        <td>${a.appointment_time}</td>
+        <td>${a.reason || '—'}</td>
+        <td>${statusBadge(a.status)}</td>
+        <td>
+          <div class="td-actions">
+            <button class="btn-icon edit" onclick="editAppointment(${a.id})" title="Edit">✏️</button>
+            <button class="btn-icon delete" onclick="askDelete(${a.id})" title="Delete">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  } catch (e) {
+    showToast('Failed to load appointments', 'error');
+  }
+}
+
+
 
 
 
