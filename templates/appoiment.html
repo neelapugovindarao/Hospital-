@@ -91,6 +91,23 @@ async function loadAppointments() {
   }
 }
 
+  
+async function populateDropdowns() {
+  const [patients, doctors] = await Promise.all([
+    apiFetch('/api/patients/list/names'),
+    apiFetch('/api/doctors/list/names'),
+  ]);
+  const pSel = document.getElementById('aPatient');
+  const dSel = document.getElementById('aDoctor');
+  patients.forEach(p => {
+    pSel.innerHTML += `<option value="${p.id}">${p.name}</option>`;
+  });
+  doctors.forEach(d => {
+    dSel.innerHTML += `<option value="${d.id}">${d.name} — ${d.specialization}</option>`;
+  });
+}
+
+
 
 
 
