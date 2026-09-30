@@ -107,6 +107,19 @@ async function populateDropdowns() {
   });
 }
 
+  
+function openModal(edit = false) {
+  document.getElementById('modalTitle').textContent = edit ? 'Edit Appointment' : 'Book Appointment';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.getElementById('appointmentForm').reset();
+  document.getElementById('appointmentId').value = '';
+}
+
+
+
 
 
 
