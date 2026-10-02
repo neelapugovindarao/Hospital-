@@ -118,6 +118,23 @@ function closeModal() {
   document.getElementById('appointmentId').value = '';
 }
 
+async function editAppointment(id) {
+  try {
+    const a = await apiFetch(`/api/appointments/${id}`);
+    document.getElementById('appointmentId').value = a.id;
+    document.getElementById('aPatient').value = a.patient_id;
+    document.getElementById('aDoctor').value = a.doctor_id;
+    document.getElementById('aDate').value = a.appointment_date;
+    document.getElementById('aTime').value = a.appointment_time;
+    document.getElementById('aReason').value = a.reason || '';
+    document.getElementById('aStatus').value = a.status;
+    document.getElementById('aNotes').value = a.notes || '';
+    openModal(true);
+  } catch (e) {
+    showToast('Failed to load appointment', 'error');
+  }
+}
+
 
 
 
