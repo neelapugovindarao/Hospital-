@@ -135,6 +135,20 @@ async function editAppointment(id) {
   }
 }
 
+  
+async function saveAppointment() {
+  const id = document.getElementById('appointmentId').value;
+  const payload = {
+    patient_id: document.getElementById('aPatient').value,
+    doctor_id: document.getElementById('aDoctor').value,
+    appointment_date: document.getElementById('aDate').value,
+    appointment_time: document.getElementById('aTime').value,
+    reason: document.getElementById('aReason').value.trim(),
+    status: document.getElementById('aStatus').value,
+    notes: document.getElementById('aNotes').value.trim(),
+  };
+
+
 
 
 
