@@ -165,6 +165,25 @@ async function saveAppointment() {
   }
 }
 
+function askDelete(id) {
+  deleteId = id;
+  document.getElementById('deleteOverlay').classList.add('open');
+}
+function closeDelete() {
+  deleteId = null;
+  document.getElementById('deleteOverlay').classList.remove('open');
+}
+async function confirmDelete() {
+  try {
+    await apiFetch(`/api/appointments/${deleteId}`, { method: 'DELETE' });
+    showToast('Appointment deleted');
+    closeDelete();
+    loadAppointments();
+  } catch (e) {
+    showToast(e.message, 'error');
+  }
+}
+
 
 
 
