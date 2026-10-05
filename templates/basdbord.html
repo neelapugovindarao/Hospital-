@@ -63,3 +63,20 @@
 </div>
 
 
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function loadDashboard() {
+  try {
+    const data = await apiFetch('/api/stats');
+    renderStats(data);
+    renderRecentPatients(data.recent_patients);
+    renderUpcomingAppts(data.upcoming_appointments);
+  } catch (e) {
+    showToast('Failed to load dashboard data', 'error');
+  }
+}
+
+
+
