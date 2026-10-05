@@ -11,3 +11,29 @@
   <div class="stat-card"><div class="skeleton" style="width:50px;height:50px;border-radius:12px;"></div><div style="flex:1"><div class="skeleton" style="height:26px;width:60%;margin-bottom:6px;"></div><div class="skeleton" style="height:14px;width:80%;"></div></div></div>
   <div class="stat-card"><div class="skeleton" style="width:50px;height:50px;border-radius:12px;"></div><div style="flex:1"><div class="skeleton" style="height:26px;width:60%;margin-bottom:6px;"></div><div class="skeleton" style="height:14px;width:80%;"></div></div></div>
 </div>
+
+
+<div class="two-col-grid">
+  <div class="card">
+    <div class="card-header">
+      <h2>🧑‍⚕️ Recent Patients</h2>
+      <a href="/patients" class="btn btn-outline btn-sm">View All</a>
+    </div>
+    <div class="card-body">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Diagnosis</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="recentPatientsBody">
+            <tr><td colspan="3" style="padding:20px;text-align:center;color:var(--text-muted);">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
