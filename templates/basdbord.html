@@ -78,5 +78,34 @@ async function loadDashboard() {
   }
 }
 
+  
+function renderStats(data) {
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-icon blue">🧑‍⚕️</div>
+      <div class="stat-info">
+        <h3>${data.total_patients}</h3>
+        <p>Total Patients</p>
+        <span class="sub">${data.active_patients} active</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green">👨‍⚕️</div>
+      <div class="stat-info">
+        <h3>${data.total_doctors}</h3>
+        <p>Total Doctors</p>
+        <span class="sub">${data.available_doctors} available</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon yellow">📅</div>
+      <div class="stat-info">
+        <h3>${data.total_appointments}</h3>
+        <p>Total Appointments</p>
+        <span class="sub">${data.scheduled_appointments} scheduled</span>
+      </div>
+    </div>
+
+
 
 
