@@ -143,6 +143,23 @@ function renderRecentPatients(patients) {
   `).join('');
 }
 
+  
+function renderUpcomingAppts(appts) {
+  const tbody = document.getElementById('upcomingApptsBody');
+  if (!appts.length) {
+    tbody.innerHTML = '<tr><td colspan="3" class="empty-state"><p>No upcoming appointments</p></td></tr>';
+    return;
+  }
+  tbody.innerHTML = appts.map(a => `
+    <tr>
+      <td><strong>${a.patient_name}</strong></td>
+      <td style="color:var(--text-muted)">${a.doctor_name}</td>
+      <td style="font-size:12px;">${a.appointment_date}<br>${a.appointment_time}</td>
+    </tr>
+  `).join('');
+}
+
+
 
 
 
