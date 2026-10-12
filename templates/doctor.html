@@ -14,3 +14,31 @@
         <span class="search-icon">🔍</span>
         <input type="text" id="searchInput" placeholder="Search by name or specialization…" oninput="loadDoctors()" />
       </div>
+      <select class="filter-select" id="statusFilter" onchange="loadDoctors()">
+        <option value="">All Status</option>
+        <option value="Available">Available</option>
+        <option value="On Leave">On Leave</option>
+        <option value="Busy">Busy</option>
+      </select>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Experience</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="doctorsBody">
+          <tr><td colspan="8" style="padding:24px;text-align:center;color:var(--text-muted);">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
