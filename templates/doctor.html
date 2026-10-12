@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Doctors — MediCore HMS{% endblock %}
+{% block page_title %}Doctors{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h2>👨‍⚕️ Doctor Records</h2>
+    <button class="btn btn-primary" onclick="openModal()">+ Add Doctor</button>
+  </div>
+  <div class="card-body">
+    <div class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search by name or specialization…" oninput="loadDoctors()" />
+      </div>
