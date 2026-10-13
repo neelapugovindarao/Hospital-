@@ -63,3 +63,35 @@
             <input type="text" id="dSpec" placeholder="e.g. Cardiology" required />
           </div>
 
+
+                   <div class="form-group">
+            <label>Phone</label>
+            <input type="text" id="dPhone" placeholder="555-0200" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="dEmail" placeholder="dr@hospital.com" />
+          </div>
+          <div class="form-group">
+            <label>Years of Experience</label>
+            <input type="number" id="dExp" placeholder="e.g. 10" min="0" />
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select id="dStatus">
+              <option>Available</option>
+              <option>Busy</option>
+              <option>On Leave</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDoctor()">Save Doctor</button>
+    </div>
+  </div>
+</div>
+
+
