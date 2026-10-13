@@ -42,3 +42,24 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Add Doctor</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="doctorForm">
+        <input type="hidden" id="doctorId" />
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Full Name *</label>
+            <input type="text" id="dName" placeholder="e.g. Dr. Jane Smith" required />
+          </div>
+          <div class="form-group full">
+            <label>Specialization *</label>
+            <input type="text" id="dSpec" placeholder="e.g. Cardiology" required />
+          </div>
+
