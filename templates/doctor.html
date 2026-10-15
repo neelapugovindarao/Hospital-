@@ -151,6 +151,18 @@ async function loadDoctors() {
     showToast('Failed to load doctors', 'error');
   }
 }
+  
+function openModal(edit = false) {
+  document.getElementById('modalTitle').textContent = edit ? 'Edit Doctor' : 'Add Doctor';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.getElementById('doctorForm').reset();
+  document.getElementById('doctorId').value = '';
+}
+
+
 
 
 
