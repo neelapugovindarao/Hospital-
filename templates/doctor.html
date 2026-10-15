@@ -119,5 +119,38 @@ function statusBadge(status) {
   return `<span class="badge badge-${map[status] || 'secondary'}">${status}</span>`;
 }
 
+async function loadDoctors() {
+  const search = document.getElementById('searchInput').value;
+  const status = document.getElementById('statusFilter').value;
+  const params = new URLSearchParams({ search, status });
+  try {
+    const doctors = await apiFetch(`/api/doctors?${params}`);
+    const tbody = document.getElementById('doctorsBody');
+    if (!doctors.length) {
+      tbody.innerHTML = `<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">👨‍⚕️</div><p>No doctors found</p></div></td></tr>`;
+      return;
+    }
+    tbody.innerHTML = doctors.map(d => `
+      <tr>
+        <td style="color:var(--text-muted);font-size:12px;">#${d.id}</td>
+        <td><strong>${d.name}</strong></td>
+        <td><span class="badge badge-info">${d.specialization}</span></td>
+        <td>${d.phone || '—'}</td>
+        <td style="font-size:12px;">${d.email || '—'}</td>
+        <td>${d.experience ? d.experience + ' yrs' : '—'}</td>
+        <td>${statusBadge(d.status)}</td>
+        <td>
+          <div class="td-actions">
+            <button class="btn-icon edit" onclick="editDoctor(${d.id})" title="Edit">✏️</button>
+            <button class="btn-icon delete" onclick="askDelete(${d.id}, '${d.name.replace(/'/g,"\\'")}' )" title="Delete">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  } catch (e) {
+    showToast('Failed to load doctors', 'error');
+  }
+}
+
 
 
