@@ -162,6 +162,25 @@ function closeModal() {
   document.getElementById('doctorId').value = '';
 }
 
+  
+async function editDoctor(id) {
+  try {
+    const d = await apiFetch(`/api/doctors/${id}`);
+    document.getElementById('doctorId').value = d.id;
+    document.getElementById('dName').value = d.name;
+    document.getElementById('dSpec').value = d.specialization;
+    document.getElementById('dPhone').value = d.phone || '';
+    document.getElementById('dEmail').value = d.email || '';
+    document.getElementById('dExp').value = d.experience || '';
+    document.getElementById('dStatus').value = d.status;
+    openModal(true);
+  } catch (e) {
+    showToast('Failed to load doctor', 'error');
+  }
+}
+
+
+
 
 
 
