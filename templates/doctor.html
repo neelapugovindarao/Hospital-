@@ -178,6 +178,35 @@ async function editDoctor(id) {
     showToast('Failed to load doctor', 'error');
   }
 }
+  
+async function saveDoctor() {
+  const id = document.getElementById('doctorId').value;
+  const payload = {
+    name: document.getElementById('dName').value.trim(),
+    specialization: document.getElementById('dSpec').value.trim(),
+    phone: document.getElementById('dPhone').value.trim(),
+    email: document.getElementById('dEmail').value.trim(),
+    experience: parseInt(document.getElementById('dExp').value) || 0,
+    status: document.getElementById('dStatus').value,
+  };
+  if (!payload.name || !payload.specialization) {
+    showToast('Name and specialization are required', 'error'); return;
+  }
+  try {
+    if (id) {
+      await apiFetch(`/api/doctors/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
+      showToast('Doctor updated successfully');
+    } else {
+      await apiFetch('/api/doctors', { method: 'POST', body: JSON.stringify(payload) });
+      showToast('Doctor added successfully');
+    }
+    closeModal();
+    loadDoctors();
+  } catch (e) {
+    showToast(e.message, 'error');
+  }
+}
+
 
 
 
