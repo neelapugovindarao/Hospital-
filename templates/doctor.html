@@ -207,6 +207,30 @@ async function saveDoctor() {
   }
 }
 
+function askDelete(id, name) {
+  deleteId = id;
+  document.getElementById('deleteDoctorName').textContent = name;
+  document.getElementById('deleteOverlay').classList.add('open');
+}
+function closeDelete() {
+  deleteId = null;
+  document.getElementById('deleteOverlay').classList.remove('open');
+}
+async function confirmDelete() {
+  try {
+    await apiFetch(`/api/doctors/${deleteId}`, { method: 'DELETE' });
+    showToast('Doctor deleted');
+    closeDelete();
+    loadDoctors();
+  } catch (e) {
+    showToast(e.message, 'error');
+  }
+}
+
+loadDoctors();
+</script>
+{% endblock %}
+
 
 
 
