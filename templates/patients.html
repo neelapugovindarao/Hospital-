@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Patients — MediCore HMS{% endblock %}
+{% block page_title %}Patients{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <h2>🧑‍⚕️ Patient Records</h2>
+    <button class="btn btn-primary" onclick="openModal()">+ Add Patient</button>
+  </div>
+  <div class="card-body">
+    <div class="toolbar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search by name, diagnosis, blood group…" oninput="loadPatients()" />
+      </div>
+      <select class="filter-select" id="statusFilter" onchange="loadPatients()">
+        <option value="">All Status</option>
+        <option value="Active">Active</option>
+        <option value="Discharged">Discharged</option>
+      </select>
+      <select class="filter-select" id="genderFilter" onchange="loadPatients()">
+        <option value="">All Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
