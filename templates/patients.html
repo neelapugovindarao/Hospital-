@@ -50,3 +50,24 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Add Patient</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="patientForm">
+        <input type="hidden" id="patientId" />
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Full Name *</label>
+            <input type="text" id="pName" placeholder="e.g. John Doe" required />
+          </div>
+          <div class="form-group">
+            <label>Age *</label>
+            <input type="number" id="pAge" placeholder="e.g. 35" min="0" max="150" required />
+          </div>
+
+
