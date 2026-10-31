@@ -126,4 +126,26 @@
 </div>
 
 
+<!-- Delete confirm -->
+<div class="modal-overlay" id="deleteOverlay">
+  <div class="modal" style="max-width:380px;">
+    <div class="modal-header">
+      <h3>Confirm Delete</h3>
+      <button class="modal-close" onclick="closeDelete()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete <strong id="deletePatientName"></strong>? This action cannot be undone.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeDelete()">Cancel</button>
+      <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let deleteId = null;
+
 
