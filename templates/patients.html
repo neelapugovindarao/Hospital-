@@ -147,5 +147,48 @@
 {% block scripts %}
 <script>
 let deleteId = null;
+  
+function statusBadge(status) {
+  return status === 'Active'
+    ? `<span class="badge badge-success">Active</span>`
+    : `<span class="badge badge-secondary">Discharged</span>`;
+}
+
+async function loadPatients() {
+  const search = document.getElementById('searchInput').value;
+  const status = document.getElementById('statusFilter').value;
+  const gender = document.getElementById('genderFilter').value;
+  const params = new URLSearchParams({ search, status, gender });
+
+  try {
+    const patients = await apiFetch(`/api/patients?${params}`);
+    const tbody = document.getElementById('patientsBody');
+    if (!patients.length) {
+      tbody.innerHTML = `<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">🧑‍⚕️</div><p>No patients found</p></div></td></tr>`;
+      return;
+    }
+    tbody.innerHTML = patients.map(p => `
+      <tr>
+        <td style="color:var(--text-muted);font-size:12px;">#${p.id}</td>
+        <td><strong>${p.name}</strong><br><span style="font-size:11px;color:var(--text-muted)">${p.email || ''}</span></td>
+        <td>${p.age} / ${p.gender}</td>
+        <td><span class="badge badge-info">${p.blood_group || '—'}</span></td>
+        <td>${p.diagnosis || '—'}</td>
+        <td>${p.phone || '—'}</td>
+        <td style="font-size:12px;">${p.admitted_on || '—'}</td>
+        <td>${statusBadge(p.status)}</td>
+        <td>
+          <div class="td-actions">
+            <button class="btn-icon edit" onclick="editPatient(${p.id})" title="Edit">✏️</button>
+            <button class="btn-icon delete" onclick="askDelete(${p.id}, '${p.name.replace(/'/g,"\\'")}' )" title="Delete">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  } catch (e) {
+    showToast('Failed to load patients', 'error');
+  }
+}
+
 
 
