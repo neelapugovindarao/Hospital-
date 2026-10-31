@@ -190,5 +190,35 @@ async function loadPatients() {
   }
 }
 
+function openModal(edit = false) {
+  document.getElementById('modalTitle').textContent = edit ? 'Edit Patient' : 'Add Patient';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.getElementById('patientForm').reset();
+  document.getElementById('patientId').value = '';
+}
+
+async function editPatient(id) {
+  try {
+    const p = await apiFetch(`/api/patients/${id}`);
+    document.getElementById('patientId').value = p.id;
+    document.getElementById('pName').value = p.name;
+    document.getElementById('pAge').value = p.age;
+    document.getElementById('pGender').value = p.gender;
+    document.getElementById('pPhone').value = p.phone || '';
+    document.getElementById('pEmail').value = p.email || '';
+    document.getElementById('pBlood').value = p.blood_group || '';
+    document.getElementById('pAdmitted').value = p.admitted_on || '';
+    document.getElementById('pStatus').value = p.status;
+    document.getElementById('pDiagnosis').value = p.diagnosis || '';
+    document.getElementById('pAddress').value = p.address || '';
+    openModal(true);
+  } catch (e) {
+    showToast('Failed to load patient', 'error');
+  }
+}
+
 
 
